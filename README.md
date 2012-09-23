@@ -1,1 +1,1 @@
-[jodah.org](jodah.org)
+[http://jodah.org](jodah.org)
