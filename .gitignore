@@ -1,0 +1,10 @@
+*~
+target/
+docs/
+test-output/
+release.properties
+.project
+.classpath
+.settings/
+_site/
+user-manual/
