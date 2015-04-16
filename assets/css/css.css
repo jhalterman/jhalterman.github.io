@@ -1,23 +1,51 @@
+/* Space out content a bit */
 body {
+  padding-top: 20px;
+  padding-bottom: 20px;
   background: #E7F1F5;
 }
 
-.menu {
-  margin-top: 50px;  
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.projects,
+.footer {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.menu li {
+	display: inline;
+	list-style-type: none;
+}
+
+.menu li + li:before {
+    content: "/ ";
 }
 
 .projects {
-  margin-top: 35px;
+  margin: 40px 0;
 }
 
 .projects h1 {
-  line-height: 30px;
+  line-height: 35px;
 }
 
-.about {
-  margin-top: 35px;
+.projects p + h4 {
+  margin-top: 28px;
 }
 
-.description {
-  padding-left: 30px;
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .projects,
+  .about,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
 }

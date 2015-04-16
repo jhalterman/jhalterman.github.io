@@ -5,9 +5,8 @@
     <title>Jonathan Halterman - About</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="assets/css/css.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/css.css">
     <link rel="shortcut icon" href="/assets/img/favicon.ico">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -30,9 +29,17 @@
   <body>
 
     <div class="container">
-      <div class="menu">
-        <h1><a href="/">projects</a> / about</h1>
+      <div class="header clearfix">
+        <nav>
+          <ul class="menu nav">
+            <h1>
+              <li role="presentation"><a href="/">projects</a></li>
+              <li role="presentation" class="active">about</li>
+            </h1>
+          </ul>
+        </nav>
       </div>
+
       <div class="about">
         <h1><a href="mailto:jhalterman@gmail.com">Jonathan Halterman</a> is a Principal Engineer at <a href="http://hpcloud.com">HP Cloud</a>.
         <br>He lives in California.

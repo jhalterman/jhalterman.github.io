@@ -5,9 +5,8 @@
     <title>Jonathan Halterman - Projects</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="assets/css/css.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/css.css">
     <link rel="shortcut icon" href="/assets/img/favicon.ico">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -30,25 +29,61 @@
   <body>
 
     <div class="container">
-      <div class="menu">
-        <h1>projects / <a href="about.html">about</a></h1>
+      <div class="header clearfix">
+        <nav>
+          <ul class="menu nav">
+            <h1>
+              <li role="presentation" class="active">projects</li>
+              <li role="presentation"><a href="about.html">about</a></li>
+            </h1>
+          </ul>
+        </nav>
       </div>
+
       <div class="projects">
         <h1>
-        <table>
-          <tr><td><a href="http://modelmapper.org">modelmapper</a></td><td class="description"># Simple, intelligent, object mapping</td></tr>
-          <tr><td><a href="https://github.com/jhalterman/lyra">lyra</a></td><td class="description"># High availability RabbitMQ client</td></tr>
-          <tr><td><a href="https://github.com/jhalterman/sarge">sarge</a></td><td class="description"># Simple object supervision</td></tr>
-          <tr><td><a href="https://github.com/jhalterman/concurrentunit">concurrentunit</a></td><td class="description"># Multi-threaded assertions</td></tr>
-          <tr><td><a href="https://github.com/jhalterman/epicary">epicary</a></td><td class="description"># Stateful, correlated message processing</td></tr>
-          <tr><td><a href="https://github.com/jhalterman/typetools">typetools</a></td><td class="description"># Erasure defeated - almost</td></tr>
-          <tr><td><a href="https://github.com/jhalterman/fabrique">fabrique</a></td><td class="description"># Dynamic service location + dependency injection</td></tr>
-          <tr><td><a href="https://github.com/jhalterman/stormcell">stormcell</a></td><td class="description"># Metrics for your Storm cluster</td></tr>
-          <tr><td><a href="https://github.com/jhalterman/xsylum">xsylum</a></td><td class="description"># XML parsing and DOM traversal for the sane</td></tr>
-          <tr><td><a href="https://github.com/jhalterman/expiringmap">expiringmap</a></td><td class="description"># Threadsafe map with expirable entries</td></tr>
-        </table>
+          <div class="row">
+            <div class="col-md-3"><a href="http://modelmapper.org">modelmapper</a></td><td class="description"></div>
+            <div class="col-md-9"># Simple, intelligent, object mapping</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><a href="https://github.com/jhalterman/lyra">lyra</a></div>
+            <div class="col-md-9"># High availability RabbitMQ client</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><a href="https://github.com/jhalterman/sarge">sarge</a></div>
+            <div class="col-md-9"># Simple object supervision</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><a href="https://github.com/jhalterman/concurrentunit">concurrentunit</a></div>
+            <div class="col-md-9"># Multi-threaded assertions</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><a href="https://github.com/jhalterman/epicary">epicary</a></div>
+            <div class="col-md-9"># Stateful, correlated message processing</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><a href="https://github.com/jhalterman/typetools">typetools</a></div>
+            <div class="col-md-9"># Erasure defeated - almost</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><a href="https://github.com/jhalterman/fabrique">fabrique</a></div>
+            <div class="col-md-9"># Dynamic service location + dependency injection</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><a href="https://github.com/jhalterman/stormcell">stormcell</a></div>
+            <div class="col-md-9"># Metrics for your Storm cluster</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><a href="https://github.com/jhalterman/xsylum">xsylum</a></div>
+            <div class="col-md-9"># XML parsing and DOM traversal for the sane</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><a href="https://github.com/jhalterman/expiringmap">expiringmap</a></div>
+            <div class="col-md-9"># Threadsafe map with expirable entries</div>
+          </div>
+        </h1>
       </div>
-    </div>
 
   </body>
 </html>
