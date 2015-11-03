@@ -1,0 +1,21 @@
+title: Jonathan Halterman
+baseurl: ""
+
+permalink: /writing/:title
+date_format: "%b %-d, %Y"
+google_analytics:
+disqus_shortname:
+
+# highlighter:
+# markdown: kramdown
+# kramdown:
+#   input: GFM
+#   enable_coderay: false
+#   syntax_highlighter_opts:
+#     disable : true
+
+markdown:    kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  enable_coderay: false
