@@ -3,8 +3,8 @@ baseurl: ""
 
 permalink: /writing/:title
 date_format: "%b %-d, %Y"
-google_analytics:
-disqus_shortname:
+google_analytics: UA-36055155-1
+disqus_shortname: 
 
 markdown: kramdown
 kramdown:
