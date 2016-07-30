@@ -4,36 +4,44 @@
 
 @charset "utf-8";
 @import "code";
-@import url(http://fonts.googleapis.com/css?family=Merriweather:400,400italic,700);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700);
+@import url(http://fonts.googleapis.com/css?family=Merriweather:300,300italic,400,400italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic);
 
+$white: #fff;
 $pink: #e25d74;
-$turqoise: #28b7e6;
+$turqoise: #24a7d2;
+$dark-gray: #333;
 
-$site-title-color: #275267;
+$sans-font-family: "Open Sans", sans-serif;
+$serif-font-family: Merriweather, Helvetica, Arial, sans-serif;
+$monospace-font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+
+$site-title-color: $dark-gray;
+$site-title-font-family: $serif-font-family;
 $site-nav-color: $site-title-color;
 
-$base-font-family: "Open Sans", sans-serif;
+$base-font-family: $serif-font-family;
 $base-font-size:   16px;
 $small-font-size:  0.875rem;
 $base-line-height: 1.5;
 
-$title-font-family: Merriweather, Helvetica, Arial, sans-serif;
+$title-font-family: $sans-font-family;
 $title-color: #e82497;
 
-$background-color: #fff;
-$text-color:   #333;
+$background-color: $white;
+$text-color:   $dark-gray;
 $link-color:   $turqoise;
 $meta-color:   #a0a0a0;
 $border-color: #ddd;
 
 $code-bg-color: #fbfbfb;
-$code-font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+$code-font-family: $monospace-font-family;
 
 body {
     margin: 0;
     font-family: $base-font-family;
     font-size: $base-font-size;
+    font-weight: 400;
     line-height: $base-line-height;
     color: $text-color;
     background-color: $background-color;
@@ -48,14 +56,27 @@ a {
         text-decoration: underline;
     }
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h1,h2,h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h1,h2,h3,h4,h5,h6 {
     font-family: $title-font-family;
-    font-weight: 300;
+    font-weight: 400;
     color: $title-color;
     word-break: break-word;
 }
@@ -96,10 +117,10 @@ code.highlighter-rouge {
 }
 
 pre {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: $code-bg-color;
-    padding: 10px;
+    border-left: 4px solid #e6e6e6;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 21px;
     margin-top: 20px;
     margin-bottom: 20px;
     line-height: 1.2;
@@ -114,7 +135,9 @@ pre {
 
 hr {
     border: none;
-    border-top: 2px solid $border-color;
+    border-top: 1px solid $border-color;
+    margin-top: 28px;
+    margin-bottom: 28px;
 }
 
 main {
@@ -123,14 +146,21 @@ main {
     padding: 0 2rem;
 }
 
+article {
+    font-weight: 300;
+}
+
 .clearfix {
   clear: both;
 }
 
 .site-header {
     margin-top: 20px;
+    margin-bottom: 10px;
+
     .site-title {
-        font-weight: 300;
+        font-size: 27px;
+        font-family: $serif-font-family;
         display: inline-block;
         line-height: 75px;
         margin-top: 0px;
@@ -141,11 +171,11 @@ main {
         }
     }
     .site-nav {
+        margin-top: 4px;
+        font-family: $serif-font-family;
+        line-height: 75px;
         display: inline-block;
         float: right;
-        line-height: 75px;
-        margin-top: 4px;
-        font-family: $title-font-family;
         > a {
             margin-left: .25rem;
             &:hover {
@@ -154,7 +184,6 @@ main {
             &.active {
                 font-weight: bold;
                 color: $site-nav-color;
-                // border-bottom: 2px solid #666;
             }
             + a {
                 
@@ -174,6 +203,7 @@ main {
 
 .table {
     display: table;
+    
     .row {
         display: table-row;
         .left, .right, .middle {
@@ -184,41 +214,82 @@ main {
 
 .project {
     font-size: 22px;
-
-    .project-name {
-        padding-right: 30px;
-        font-family: $title-font-family;
+    font-family: $serif-font-family;
+    
+    .name {
+        padding-right: 40px;
+    }
+    .description {
+        font-family: $sans-font-family;
     }
 }
 
 .posts {
     list-style: none;
     padding: 0;
+
     > li {
         line-height: 1.75;
         span {
             color: $meta-color;
+            font-size: $small-font-size;
+            font-family: $serif-font-family;
             margin-right: 1.5rem;
+        }
+        a {
+            font-family: $sans-font-family;
         }
     }
 }
 
 .post {
     position: relative;
+
     .post-header {
         text-align: center;
-        margin-bottom: 0;
+        margin: 0px;
     }
     .post-meta {
-        margin: 20px;
+        margin-top: 16px;
+        margin-bottom: 20px;
+        font-weight: 400;
         text-align: center;
         color: $meta-color;
         font-size: $small-font-size;
+        font-family: $serif-font-family;
     }
 }
 
+ul.social {
+    list-style: none;
+    padding: 0px;
+    margin-top: 50px;
+    text-align: center;
+
+    li {
+        display: inline-block;
+    }
+
+    div.twitter {
+        margin-right: 3px;
+    }
+}
+
+#disqus_thread {
+    margin-top: 36px;
+}
+
 .copyright {
-    margin-top: 40px;
+    margin-top: 15px;
     text-align: center;
     font-size: $small-font-size;
+}
+
+.flame {
+    text-align: center;
+    width: 25px;
+    display: block;
+    margin: auto;
+    margin-top: 40px;
+    fill: #eee;
 }

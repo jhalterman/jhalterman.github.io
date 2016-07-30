@@ -1,10 +1,25 @@
 ---
 layout: default
 ---
+
 <article class="post">
-  <h2 class="post-header">{{ page.title }}</h2>
+  <h1 class="post-header">{{ page.title }}</h1>
   <p class="post-meta">{{ page.date | date: site.date_format }}</p>
   {{ content }}
+  <ul class="social">
+    <li>
+      <div class="twitter">
+        <a href="https://twitter.com/intent/tweet?via=jhalt&text={{ page.title }}" class="twitter-share-button" data-show-count="false">Tweet about this article</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
+    </li>
+    <li>
+      <div class="hn">
+        <a href="https://news.ycombinator.com/submit" class="hn-button" data-title="{{ page.title }}" data-url="http://jodah.net{{ page.url }}" data-count="horizontal">Vote on Hacker News</a>
+        <script type="text/javascript">var HN=[];HN.factory=function(e){return function(){HN.push([e].concat(Array.prototype.slice.call(arguments,0)))};},HN.on=HN.factory("on"),HN.once=HN.factory("once"),HN.off=HN.factory("off"),HN.emit=HN.factory("emit"),HN.load=function(){var e="hn-button.js";if(document.getElementById(e))return;var t=document.createElement("script");t.id=e,t.src="//hn-button.herokuapp.com/hn-button.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)},HN.load();</script>
+      </div>
+    </li>
+  </ul>
+
   {% if site.disqus_shortname %}
     <div id="disqus_thread"></div>
     <script type="text/javascript">
@@ -17,5 +32,5 @@ layout: default
       })();
     </script>
   {% endif %}
-  <p class="copyright"><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND</a></p>
+  <p class="copyright"><a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC</a></p>
 </article>

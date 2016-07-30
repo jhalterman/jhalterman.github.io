@@ -1,10 +1,10 @@
 title: Jonathan Halterman
 baseurl: ""
 
-permalink: /writing/:title
+permalink: /:title
 date_format: "%b %-d, %Y"
 google_analytics: UA-36055155-1
-disqus_shortname: 
+disqus_shortname: #jodah
 
 markdown: kramdown
 kramdown:

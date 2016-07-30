@@ -1,16 +1,14 @@
 ---
 layout: post
-title:  A guide to testing multi-threaded and asynchronous code
-date:   2016-07-30
+title:  Testing Multi-Threaded and Asynchronous Code
+date:   2016-07-31
 ---
 
-If you've been writing code long enough, or maybe even if you haven't, chances are you've hit on a scenario where you want to test some multi-threaded code. The conventional wisdom is that threads and tests should not mix. Usually this works out fine because the thing that you really want to test just happens to run inside of a multi-threaded system, such as an [Akka] actor or a [Netty] ChannelHandler, and can be tested individually without the use of threads. But what if you can't separate things out, or moreover, what if threading is the point of the code you're testing?
+If you've been writing code long enough, or maybe even if you haven't, chances are you've hit on a scenario where you want to test some multi-threaded code. The conventional wisdom is that threads and tests should not mix. Usually this works out fine because the thing that you really want to test just happens to run inside of a multi-threaded system and can be tested individually without the use of threads. But what if you can't separate things out, or moreover, what if threading is the point of the code you're testing?
 
-I'm here to tell you that while threads in tests might not be the norm, they are ok. The software police will not arrest you for firing up a thread in a unit test, but how to actually go about testing multi-threaded code is another matter.
+I'm here to tell you that while threads in tests might not be the norm, they are ok. The software police will not arrest you for firing up a thread in a unit test, though how to actually go about testing multi-threaded code is another matter. Some excellent asynchronous technologies like Akka and Vert.x provide [test][akka-testing] [kits][vertx-testing] to ease the burden. But outside of these, testing multi-threaded code usually requires a different approach than a typical synchronous unit test.
 
-While many excellent libraries like Akka and Vert.x provide [test][akka-testing] [kits][vertx-testing] specifically tailored to those technologies, testing something more general such as a multi-threaded data structure requires something different. A good place to start in learning about multi-threaded testing is to take a look at the [JSR-166 test kit][jsr-166-testing]. The JSR-166 specification brought us the many excellent concurrency utilities found in the [`java.util.concurrent`][java-util-concurrent] package. Reading through the unit tests for these utilities, a picture emerges of how to go about testing threaded code.
-
-## Go parallel
+## Go Parallel
 
 The first step is to kick off whatever threaded action you wish to test the outcome of. For example, let's use a hypothetical API to register a message handler against a message bus, and publish a message on the bus which will be delivered asynchronously, in a separate thread, to our handler:
 
@@ -36,9 +34,9 @@ messageBus.publish(msg);
 
 This seems better. We run our test and it's green. Awesome! But the `Received` message never printed - something isn't quite right.
 
-## Wait a minute
+## Wait a Second
 
-In our test above, when a message is published to the message bus, it's delivered by the bus to the handler on another thread. But when our unit testing tool, such as JUnit, executes our test, it doesn't know anything about the message bus' threads. JUnit only knows about the main thread that it executes our test in. So while the message bus is busy trying to deliver our message, the test finishes execution in the main test thread and JUnit reports success. The solution? We need the main test thread to wait for the message bus to deliver our message. Let's add a sleep statement:
+In our test above, when a message is published to the message bus, it's delivered by the bus to the handler on another thread. But when our unit testing tool, such as JUnit, executes our test, it doesn't know anything about the message bus' threads. JUnit only knows about the main thread that it executes our test in. So while the message bus is busy trying to deliver our message, the test finishes execution in the main test thread and JUnit reports success. The solution? We need the main test thread to wait for the message bus to deliver our message. So let's add a sleep statement:
 
 ```java
 String msg = "test";
@@ -66,9 +64,9 @@ messageBus.publish(msg);
 latch.await();
 ```
 
-In this approach, we're sharing a `CountdownLatch` between the main test thread and our message handler thread. The main thread is made to wait on the latch and the test thread releases the waiting main thread by calling `countDown()` on the latch after the message has been received. We no longer need to sleep for 1 second; our test only takes as long as it needs to.
+In this approach, we're sharing a `CountdownLatch` between the main test thread and our message handler thread. The main thread is made to wait on the latch and the test thread releases the waiting main thread by calling `countDown()` on the latch after the message has been received. We no longer need to sleep for 1 second, our test only takes as long as it needs to.
 
-## Ship it!?
+## Ship It!?
 
 With our new `CountdownLatch` awesomeness, we start writing multi-threaded tests like it's going out of style. But pretty quickly we notice that one of our test cases blocks forever and isn't finishing. What's going on? Consider the message bus scenario: the latch is made to wait, but it only releases after a message is received. If the bus is broken and the message is never delivered then our test never completes. So let's add a timeout to the latch:
 
@@ -118,9 +116,9 @@ if (failure.get() != null)
   throw failure.get();
 ```
 
-A quick run and yes, the test fails just as it should! Now we can go back and add CoundownLatches and try/catch blocks and AtomicReferences to all of our test cases. Awesome! Actually, not awesome, that sounds like a lot of work.
+A quick run and yes, the test fails just as it should! Now we can go back and add CoundownLatches and try/catch blocks and AtomicReferences to all of our test cases. Awesome! Actually, not awesome, that sounds like a lot of boilerplate.
 
-## Cut the cruft
+## Cut the Cruft
 
 Ideally what we want is an API that allows us to coordinate waiting, asserting, and resuming execution across threads, so that unit tests can be made to pass or fail as expected regardless of where the assertion failure occurs. Luckily, [ConcurrentUnit] provides a lightweight construct that does just this: the [Waiter]. Let's adapt our message handling test from above one last time and see what ConcurrentUnit's Waiter can do for us:
 
@@ -138,7 +136,7 @@ waiter.await(1, TimeUnit.SECONDS);
 
 In this test, we can see that Waiter has taken the place of our `CountdownLatch` and`AtomicReference`. Through the Waiter we block the main test thread, perform our assertion, then resume the main test thread so that the test can complete. If the assertion were to fail, the `waiter.await` call automatically unblocks and throws the failure, causing our test to pass or fail as it should, even when asserting from another thread.
 
-## More parallel
+## More Parallel
 
 Now that we're certified multi-threaded testers, we may want to assert that multiple asynchronous actions occur. ConcurrentUnit's waiter makes this straightforward:
 
@@ -155,19 +153,17 @@ waiter.await(1, TimeUnit.SECONDS, 2);
 
 Here we publish two messages to the bus and verify that both messages are delivered by making the Waiter wait until `resume()` is called 2 times. If the messages fail to be delivered and resume is not called twice within 1 second then the test will fail with a `TimeoutException`.
 
-One general tip with this approach is to make sure that your timeouts are reasonably long enough for any concurrent actions to complete. Under normal conditions when the system under test operates as expected, the timeout should not matter, and only come into play when the system fails for some reason.
+One general tip with this approach is to make sure that your timeouts are reasonably long enough for any concurrent actions to complete. Under normal conditions when the system under test operates as expected, the timeout should not matter, and only comes into play when the system fails for some reason.
 
 ## Recap
 
-In this article we learned that multi-threaded unit testing is not evil and is fairly easy to do. We learned about a general approach where we block the main test thread, perform assertions from some other threads, then resuming the main thread. And we learned about [ConcurrentUnit] which can help make this easier to do.
+In this article we learned that multi-threaded unit testing is not evil and is fairly easy to do. We learned about a general approach where we block the main test thread, perform assertions from some other threads, then resume the main thread. And we learned about [ConcurrentUnit] which can help make this easier to do.
 
-Now go write some tests!
+Happy testing!
 
 [akka]: http://akka.io/
 [netty]: http://netty.io/
 [concurrentunit]: https://github.com/jhalterman/concurrentunit
-[jsr-166]: https://jcp.org/en/jsr/detail?id=166
-[jsr-166-testing]: http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/test/tck/
 [vertx-testing]: http://vertx.io/docs/vertx-unit/java/
 [akka-testing]: http://doc.akka.io/docs/akka/current/scala/testing.html
 [waiter]: http://jodah.net/concurrentunit/javadoc/net/jodah/concurrentunit/Waiter.html

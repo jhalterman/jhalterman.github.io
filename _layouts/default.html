@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="shortcut icon" href="/assets/img/favicon.ico">
-    <title>{{ site.title }}</title>
+    <title>{{ site.title }} - {% if page.title %}{{ page.title }}{% else %}{{ page.section }}{% endif %}</title>
 </head>
 <body>
     <main>
@@ -14,7 +14,7 @@
             <nav class="site-nav">
                 {
                 <a href="{{ site.baseurl }}/" class="{% if page.url == '/' %}active{% endif %}">Projects</a>,
-                <a href="{{ site.baseurl }}/writing/" class="{% if page.url contains '/writing/' %}active{% endif %}">Writing</a>,
+                <a href="{{ site.baseurl }}/writing/" class="{% if page.url contains '/writing/' or page.layout == 'post' %}active{% endif %}">Writing</a>,
                 <a href="{{ site.baseurl }}/about/" class="{% if page.url == '/about/' %}active{% endif %}">About</a>
                 }
             </nav>
