@@ -1,0 +1,11 @@
+title: Jonathan Halterman
+baseurl: ""
+
+permalink: /writing/:title
+date_format: "%b %-d, %Y"
+google_analytics:
+disqus_shortname:
+
+markdown: kramdown
+kramdown:
+  input: GFM

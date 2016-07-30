@@ -1,0 +1,224 @@
+---
+# The scss file which include files from _sass/
+---
+
+@charset "utf-8";
+@import "code";
+@import url(http://fonts.googleapis.com/css?family=Merriweather:400,400italic,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700);
+
+$pink: #e25d74;
+$turqoise: #28b7e6;
+
+$site-title-color: #275267;
+$site-nav-color: $site-title-color;
+
+$base-font-family: "Open Sans", sans-serif;
+$base-font-size:   16px;
+$small-font-size:  0.875rem;
+$base-line-height: 1.5;
+
+$title-font-family: Merriweather, Helvetica, Arial, sans-serif;
+$title-color: #e82497;
+
+$background-color: #fff;
+$text-color:   #333;
+$link-color:   $turqoise;
+$meta-color:   #a0a0a0;
+$border-color: #ddd;
+
+$code-bg-color: #fbfbfb;
+$code-font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+
+body {
+    margin: 0;
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    color: $text-color;
+    background-color: $background-color;
+}
+p {
+    word-break: break-word;
+}
+a {
+    color: $link-color;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $title-font-family;
+    font-weight: 300;
+    color: $title-color;
+    word-break: break-word;
+}
+blockquote {
+    font-style: italic;
+    padding-left: 1rem;
+    border-left: 3px solid $border-color;
+}
+img {
+    max-width: 100%;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    max-width: 100%;
+    width: 100%;
+}
+th,
+td {
+    padding: 0.5rem;
+    line-height: inherit;
+}
+th {
+    text-align: left;
+    vertical-align: bottom;
+    border-bottom: 2px solid $border-color;
+}
+td {
+    vertical-align: top;
+    border-bottom: 1px solid $border-color;
+}
+
+code.highlighter-rouge {
+    padding: 2px 4px;
+    font-size: 90%;
+    background-color: $code-bg-color;
+    border-radius: 4px;
+}
+
+pre {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: $code-bg-color;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+
+    code {
+        font-family: $code-font-family;
+        font-size: 13px;
+        min-height: 250px;
+        margin-bottom: 0px;
+    }
+}
+
+hr {
+    border: none;
+    border-top: 2px solid $border-color;
+}
+
+main {
+    max-width: 815px;
+    margin: 0 auto 3rem;
+    padding: 0 2rem;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.site-header {
+    margin-top: 20px;
+    .site-title {
+        font-weight: 300;
+        display: inline-block;
+        line-height: 75px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        > a {
+            color: $site-title-color;
+            text-decoration: none;
+        }
+    }
+    .site-nav {
+        display: inline-block;
+        float: right;
+        line-height: 75px;
+        margin-top: 4px;
+        font-family: $title-font-family;
+        > a {
+            margin-left: .25rem;
+            &:hover {
+                text-decoration: none;
+            }
+            &.active {
+                font-weight: bold;
+                color: $site-nav-color;
+                // border-bottom: 2px solid #666;
+            }
+            + a {
+                
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 815px) {
+    .site-header {
+        .site-title,
+        .site-nav {
+            text-align: center;
+        }
+    }
+}
+
+.table {
+    display: table;
+    .row {
+        display: table-row;
+        .left, .right, .middle {
+            display: table-cell;
+        }
+    }
+}
+
+.project {
+    font-size: 22px;
+
+    .project-name {
+        padding-right: 30px;
+        font-family: $title-font-family;
+    }
+}
+
+.posts {
+    list-style: none;
+    padding: 0;
+    > li {
+        line-height: 1.75;
+        span {
+            color: $meta-color;
+            margin-right: 1.5rem;
+        }
+    }
+}
+
+.post {
+    position: relative;
+    .post-header {
+        text-align: center;
+        margin-bottom: 0;
+    }
+    .post-meta {
+        margin: 20px;
+        text-align: center;
+        color: $meta-color;
+        font-size: $small-font-size;
+    }
+}
+
+.copyright {
+    margin-top: 40px;
+    text-align: center;
+    font-size: $small-font-size;
+}
