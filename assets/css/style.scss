@@ -163,9 +163,10 @@ article {
         font-size: 27px;
         font-family: $serif-font-family;
         display: inline-block;
-        line-height: 75px;
-        margin-top: 0px;
-        margin-bottom: 0px;
+        line-height: 1.4em;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        
         > a {
             color: $site-title-color;
             text-decoration: none;
