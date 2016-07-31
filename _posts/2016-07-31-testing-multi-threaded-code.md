@@ -49,11 +49,11 @@ messageBus.publish(msg);
 Thread.sleep(1000);
 ```
 
-Our test is green and the `Received` statement prints out as expected. Awesome! But having a 1 second sleep means our test takes at least one second to run - no good. We could lower the sleep time, but then we risk the test ending before the message is received. What we need is a way to coordinate between the main test thread and the message handler's thread. Looking at the [`java.util.concurrent`][java-util-concurrent] package, we're sure to find something we can use. How about a [`CountdownLatch`][CountdownLatch]?
+Our test is green and the `Received` statement prints out as expected. Awesome! But having a 1 second sleep means our test takes at least one second to run - no good. We could lower the sleep time, but then we risk the test ending before the message is received. What we need is a way to coordinate between the main test thread and the message handler's thread. Looking at the [`java.util.concurrent`][java-util-concurrent] package, we're sure to find something we can use. How about a [`CountDownLatch`][CountDownLatch]?
 
 ```java
 String msg = "test";
-CountdownLatch latch = new CountdownLatch(1);
+CountDownLatch latch = new CountDownLatch(1);
 messageBus.registerHandler(message -> {
   System.out.println("Received " + message);
   assertEquals(message, msg);
@@ -64,11 +64,11 @@ messageBus.publish(msg);
 latch.await();
 ```
 
-In this approach, we're sharing a `CountdownLatch` between the main test thread and our message handler thread. The main thread is made to wait on the latch and the test thread releases the waiting main thread by calling `countDown()` on the latch after the message has been received. We no longer need to sleep for 1 second, our test only takes as long as it needs to.
+In this approach, we're sharing a `CountDownLatch` between the main test thread and our message handler thread. The main thread is made to wait on the latch and the test thread releases the waiting main thread by calling `countDown()` on the latch after the message has been received. We no longer need to sleep for 1 second, our test only takes as long as it needs to.
 
 ## Ship It!?
 
-With our new `CountdownLatch` awesomeness, we start writing multi-threaded tests like it's going out of style. But pretty quickly we notice that one of our test cases blocks forever and isn't finishing. What's going on? Consider the message bus scenario: the latch is made to wait, but it only releases after a message is received. If the bus is broken and the message is never delivered then our test never completes. So let's add a timeout to the latch:
+With our new `CountDownLatch` awesomeness, we start writing multi-threaded tests like it's going out of style. But pretty quickly we notice that one of our test cases blocks forever and isn't finishing. What's going on? Consider the message bus scenario: the latch is made to wait, but it only releases after a message is received. If the bus is broken and the message is never delivered then our test never completes. So let's add a timeout to the latch:
 
 ```java
 latch.await(1, TimeUnit.SECONDS);
@@ -134,7 +134,7 @@ messageBus.publish(msg);
 waiter.await(1, TimeUnit.SECONDS);
 ```
 
-In this test, we can see that Waiter has taken the place of our `CountdownLatch` and`AtomicReference`. Through the Waiter we block the main test thread, perform our assertion, then resume the main test thread so that the test can complete. If the assertion were to fail, the `waiter.await` call automatically unblocks and throws the failure, causing our test to pass or fail as it should, even when asserting from another thread.
+In this test, we can see that Waiter has taken the place of our `CountDownLatch` and`AtomicReference`. Through the Waiter we block the main test thread, perform our assertion, then resume the main test thread so that the test can complete. If the assertion were to fail, the `waiter.await` call automatically unblocks and throws the failure, causing our test to pass or fail as it should, even when asserting from another thread.
 
 ## More Parallel
 
@@ -168,6 +168,6 @@ Happy testing!
 [akka-testing]: http://doc.akka.io/docs/akka/current/scala/testing.html
 [waiter]: http://jodah.net/concurrentunit/javadoc/net/jodah/concurrentunit/Waiter.html
 [java-util-concurrent]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/package-summary.html
-[CountdownLatch]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CountDownLatch.html
+[CountDownLatch]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CountDownLatch.html
 [await]: http://jodah.net/concurrentunit/javadoc/net/jodah/concurrentunit/Waiter.html#await-long-java.util.concurrent.TimeUnit-
 [resume]: http://jodah.net/concurrentunit/javadoc/net/jodah/concurrentunit/Waiter.html#resume--
