@@ -119,7 +119,6 @@ code.highlighter-rouge {
 pre {
     border-left: 4px solid #e6e6e6;
     padding-top: 10px;
-    padding-bottom: 10px;
     padding-left: 21px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -128,8 +127,10 @@ pre {
     code {
         font-family: $code-font-family;
         font-size: 13px;
-        min-height: 250px;
         margin-bottom: 0px;
+        padding-bottom: 10px;
+        display: block;
+        overflow-x: auto;
     }
 }
 
@@ -171,11 +172,12 @@ article {
         }
     }
     .site-nav {
-        margin-top: 4px;
+        margin-top: 3px;
+        margin-right: 12px;
         font-family: $serif-font-family;
         line-height: 75px;
-        display: inline-block;
         float: right;
+
         > a {
             margin-left: .25rem;
             &:hover {
@@ -192,20 +194,12 @@ article {
     }
 }
 
-@media screen and (max-width: 815px) {
-    .site-header {
-        .site-title,
-        .site-nav {
-            text-align: center;
-        }
-    }
-}
-
 .table {
     display: table;
     
     .row {
         display: table-row;
+
         .left, .right, .middle {
             display: table-cell;
         }
@@ -221,6 +215,34 @@ article {
     }
     .description {
         font-family: $sans-font-family;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .site-header {
+        text-align: center;
+
+        .site-nav {
+            float: none;
+            line-height: 1em;
+            margin-right: 0px;
+            margin-bottom: 35px;
+        }
+    }
+
+    .row.project {
+        font-size: 19px;
+        line-height: 1.3em;
+        margin-bottom: 12px;
+        display: block;
+
+        .left, .right, .middle {
+            display: block;
+        }
+    }
+
+    pre {
+        padding-left: 13px;
     }
 }
 
@@ -248,6 +270,7 @@ article {
     .post-header {
         text-align: center;
         margin: 0px;
+        line-height: 1.4em;
     }
     .post-meta {
         margin-top: 16px;
