@@ -109,6 +109,10 @@ td {
     border-bottom: 1px solid $border-color;
 }
 
+div.highlighter-rouge {
+    background-color: #f7f7f7;
+}
+
 code.highlighter-rouge {
     padding: 2px 4px;
     font-size: 90%;
@@ -119,7 +123,7 @@ code.highlighter-rouge {
 pre {
     border-left: 4px solid #e6e6e6;
     padding-top: 10px;
-    padding-left: 21px;
+    padding-left: 18px;
     margin-top: 20px;
     margin-bottom: 20px;
     line-height: 1.35;
