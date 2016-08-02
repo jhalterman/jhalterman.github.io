@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="shortcut icon" href="/assets/img/favicon.ico">
-    <title>{{ site.title }} - {% if page.title %}{{ page.title }}{% else %}{{ page.section }}{% endif %}</title>
+    <title>{% if page.layout == 'post' %}{{ page.title }}{% else %}{{ site.title }} - {{ page.section }}{% endif %}</title>
 </head>
 <body>
     <main>
