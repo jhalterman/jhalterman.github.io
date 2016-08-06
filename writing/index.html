@@ -3,10 +3,11 @@ layout: default
 section: Writing
 ---
 
-<div class="home">
-  <ul class="posts">
-    {% for post in site.posts %}
-    <li><span>{{ post.date | date: site.date_format }}</span><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
-    {% endfor %}
-  </ul>
+<div class="posts table">
+  {% for post in site.posts %}
+    <div class="post row">
+      <div class="left date">{{ post.date | date: site.date_format }}</div>
+      <div class="title"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></div>
+    </div>
+  {% endfor %}
 </div>

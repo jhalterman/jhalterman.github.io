@@ -259,19 +259,13 @@ article {
 }
 
 .posts {
-    list-style: none;
-    padding: 0;
-
-    > li {
-        line-height: 1.75;
-        span {
-            color: $meta-color;
-            font-family: $serif-font-family;
-            margin-right: 15px;
-        }
-        a {
-            font-family: $sans-font-family;
-        }
+    .date{
+        color: $meta-color;
+        font-family: $serif-font-family;
+        padding-right: 15px;
+    }
+    .title {
+        font-family: $sans-font-family;
     }
 }
 
