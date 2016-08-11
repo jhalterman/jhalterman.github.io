@@ -1,0 +1,59 @@
+- name: atomix
+  description: Framework for building distributed systems
+  url: "http://atomix.io/atomix"
+
+- name: copycat
+  description: Fault-tolerant state machine replication
+  url: "http://atomix.io/copycat"
+
+- name: monasca
+  description: High-performance OpenStack monitoring service
+  url: "https://github.com/openstack/?utf8=%E2%9C%93&query=monasca"
+
+- name: failsafe
+  description: Sophisticated failure handling
+  url: "https://github.com/jhalterman/failsafe"
+
+- name: modelmapper
+  description: Simple, intelligent, object mapping
+  url: "http://modelmapper.org"
+
+- name: lyra
+  description: High availability RabbitMQ client
+  url: "https://github.com/jhalterman/lyra"
+
+- name: sarge
+  description: Simple object supervision
+  url: "https://github.com/jhalterman/sarge"
+
+- name: concurrentunit
+  description: Multi-threaded and asynchronous testing
+  url: "https://github.com/jhalterman/concurrentunit"
+
+- name: typetools
+  description: Erasure defeated, almost
+  url: "https://github.com/jhalterman/typetools"
+
+- name: expiringmap
+  description: Threadsafe map with expirable entries
+  url: "https://github.com/jhalterman/expiringmap"
+
+- name: fabrique
+  description: Service location & dependency injection
+  url: "https://github.com/jhalterman/fabrique"
+
+- name: trinity
+  description: A sweet little Clojure API for Atomix
+  url: "https://github.com/atomix/trinity"
+
+- name: stormcell
+  description: Metrics for your Storm cluster
+  url: "https://github.com/jhalterman/stormcell"
+
+- name: xsylum
+  description: XML parsing and DOM traversal for the sane
+  url: "https://github.com/jhalterman/xsylum"
+
+- name: epicary
+  description: Stateful, correlated message processing
+  url: "https://github.com/jhalterman/epicary"
