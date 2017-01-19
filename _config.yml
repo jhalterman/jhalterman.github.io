@@ -9,3 +9,5 @@ disqus_shortname: #jodah
 markdown: kramdown
 kramdown:
   input: GFM
+
+future: true
