@@ -1,5 +1,5 @@
 - name: atomix
-  description: Framework for building distributed systems
+  description: Distributed coordination framework
   url: "http://atomix.io/atomix"
 
 - name: copycat
