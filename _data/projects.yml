@@ -1,10 +1,10 @@
 - name: atomix
   description: Distributed coordination framework
-  url: "http://atomix.io/atomix"
+  url: "https://atomix.io"
 
 - name: copycat
   description: Fault-tolerant state machine replication
-  url: "http://atomix.io/copycat"
+  url: "https://github.com/atomix/copycat"
 
 - name: monasca
   description: High-performance OpenStack monitoring service
