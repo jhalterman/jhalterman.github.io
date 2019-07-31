@@ -85,10 +85,10 @@ messageBus.registerHandler(message -> {
 };
 ```
 
-We had to use a `CountdownLatch` to coordinate the completion of our test with the main test thread, but what about the assertion? If the assertion fails, will JUnit know? It turns out that because we're not performing the assertion in the main test thread, any failure of the assertion goes completely unnoticed by JUnit. Let's try a little scenario to verify this:
+We had to use a `CountDownLatch` to coordinate the completion of our test with the main test thread, but what about the assertion? If the assertion fails, will JUnit know? It turns out that because we're not performing the assertion in the main test thread, any failure of the assertion goes completely unnoticed by JUnit. Let's try a little scenario to verify this:
 
 ```java
-CountdownLatch latch = new CountdownLatch(1);
+CountDownLatch latch = new CountDownLatch(1);
 new Thread(() -> {
   assertTrue(false);
   latch.countDown();
@@ -100,7 +100,7 @@ latch.await();
 Ugh, the test is green! So now what do we do? We need a way to relay any test failures from the message handling thread back to the main test thread. If a failure occurs in the message handling thread, we need it to be re-thrown in the main thread so that the test will fail as expected. Let's take a stab at this:
 
 ```java
-CountdownLatch latch = new CountdownLatch(1);
+CountDownLatch latch = new CountDownLatch(1);
 AtomicReference<AssertionError> failure = new AtomicReference<>();
 new Thread(() -> {
   try {
@@ -116,7 +116,7 @@ if (failure.get() != null)
   throw failure.get();
 ```
 
-A quick run and yes, the test fails just as it should! Now we can go back and add CoundownLatches and try/catch blocks and AtomicReferences to all of our test cases. Awesome! Actually, not awesome, that sounds like a lot of boilerplate.
+A quick run and yes, the test fails just as it should! Now we can go back and add CountDownLatches and try/catch blocks and AtomicReferences to all of our test cases. Awesome! Actually, not awesome, that sounds like a lot of boilerplate.
 
 ## Cut the Cruft
 
