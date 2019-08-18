@@ -2,6 +2,10 @@
   description: Distributed coordination framework
   url: "https://atomix.io"
 
+- name: failsafe
+  description: Sophisticated failure handling
+  url: "https://jodah.net/failsafe"
+
 - name: copycat
   description: Fault-tolerant state machine replication
   url: "https://github.com/atomix/copycat"
@@ -9,10 +13,6 @@
 - name: monasca
   description: High-performance OpenStack monitoring service
   url: "https://github.com/openstack/?utf8=%E2%9C%93&q=monasca"
-
-- name: failsafe
-  description: Sophisticated failure handling
-  url: "https://github.com/jhalterman/failsafe"
 
 - name: modelmapper
   description: Simple, intelligent, object mapping
