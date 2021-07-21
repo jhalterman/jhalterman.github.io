@@ -3,8 +3,8 @@
   url: "https://atomix.io"
 
 - name: failsafe
-  description: Sophisticated failure handling
-  url: "https://jodah.net/failsafe"
+  description: Failure handling and resilience patterns
+  url: "https://failsafe.dev"
 
 - name: copycat
   description: Fault-tolerant state machine replication
