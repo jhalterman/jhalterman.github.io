@@ -1,10 +1,14 @@
-- name: atomix
-  description: Distributed coordination framework
-  url: "https://atomix.io"
-
 - name: failsafe
   description: Failure handling and resilience patterns
   url: "https://failsafe.dev"
+
+- name: atomix
+  description: Distributed coordination framework
+  url: "https://github.com/atomix/atomix"
+
+- name: modelmapper
+  description: Simple, intelligent, object mapping
+  url: "http://modelmapper.org"
 
 - name: copycat
   description: Fault-tolerant state machine replication
@@ -14,9 +18,13 @@
   description: High-performance OpenStack monitoring service
   url: "https://github.com/openstack/?utf8=%E2%9C%93&q=monasca"
 
-- name: modelmapper
-  description: Simple, intelligent, object mapping
-  url: "http://modelmapper.org"
+- name: typetools
+  description: Tools for working with generic types
+  url: "https://github.com/jhalterman/typetools"
+
+- name: expiringmap
+  description: Threadsafe map with expirable entries
+  url: "https://github.com/jhalterman/expiringmap"
 
 - name: lyra
   description: High availability RabbitMQ client
@@ -29,14 +37,6 @@
 - name: concurrentunit
   description: Multi-threaded and asynchronous testing
   url: "https://github.com/jhalterman/concurrentunit"
-
-- name: typetools
-  description: Erasure defeated, almost
-  url: "https://github.com/jhalterman/typetools"
-
-- name: expiringmap
-  description: Threadsafe map with expirable entries
-  url: "https://github.com/jhalterman/expiringmap"
 
 - name: fabrique
   description: Service location & dependency injection
