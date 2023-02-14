@@ -2,13 +2,13 @@
   description: Failure handling and resilience patterns
   url: "https://failsafe.dev"
 
-- name: atomix
-  description: Distributed coordination framework
-  url: "https://github.com/atomix/atomix"
-
 - name: modelmapper
   description: Simple, intelligent, object mapping
   url: "http://modelmapper.org"
+
+- name: atomix
+  description: Distributed coordination framework
+  url: "https://github.com/atomix/atomix-archive"
 
 - name: copycat
   description: Fault-tolerant state machine replication
