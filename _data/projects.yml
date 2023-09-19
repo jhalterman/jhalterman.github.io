@@ -1,10 +1,14 @@
 - name: failsafe
-  description: Failure handling and resilience patterns
+  description: Failure handling patterns for the JVM
   url: "https://failsafe.dev"
 
 - name: modelmapper
   description: Simple, intelligent, object mapping
   url: "http://modelmapper.org"
+
+- name: failsafe-go
+  description: Fault tolerance and resilience patterns for Go
+  url: "https://failsafe-go.dev"
 
 - name: atomix
   description: Distributed coordination framework
