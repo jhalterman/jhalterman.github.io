@@ -42,6 +42,10 @@
   description: Multi-threaded and asynchronous testing
   url: "https://github.com/jhalterman/concurrentunit"
 
+- name: singlet
+  description: Generic singletons for Go
+  url: "https://github.com/jhalterman/singlet"
+
 - name: fabrique
   description: Service location & dependency injection
   url: "https://github.com/jhalterman/fabrique"
