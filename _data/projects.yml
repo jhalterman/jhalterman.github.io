@@ -18,6 +18,10 @@
   description: Fault-tolerant state machine replication
   url: "https://github.com/atomix/copycat"
 
+- name: tripwire
+  description: Client/server load simulator for resilience testing
+  url: "https://github.com/jhalterman/tripwire"
+
 - name: monasca
   description: High-performance OpenStack monitoring service
   url: "https://github.com/openstack/?utf8=%E2%9C%93&q=monasca"
